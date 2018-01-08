@@ -1,7 +1,6 @@
 //==============================================================
 //
-
-//EDITADO
+//SEGUNDA EDICION
 
 // SAMPLE SOURCE CODE - SUBJECT TO THE TERMS OF SAMPLE CODE LICENSE AGREEMENT,
 // http://software.intel.com/en-us/articles/intel-software-development-products-license-agreement/
