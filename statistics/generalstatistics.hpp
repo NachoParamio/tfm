@@ -30,6 +30,8 @@
 #include <vector>
 #include <utility>
 
+#include "tbb/concurrent_vector.h"
+
 namespace QuantLib {
 
     //! Statistics tool
@@ -52,7 +54,8 @@ namespace QuantLib {
         Size samples() const;
 
         //! collected data
-        const std::vector<std::pair<Real,Real> >& data() const;
+        //const std::vector<std::pair<Real,Real> >& data() const;
+		const concurrent_vector<std::pair<Real, Real> >& data() const;
 
         //! sum of data weights
         Real weightSum() const;
@@ -116,7 +119,8 @@ namespace QuantLib {
                                               const Predicate& inRange) const {
             Real num = 0.0, den = 0.0;
             Size N = 0;
-            std::vector<std::pair<Real,Real> >::const_iterator i;
+            //std::vector<std::pair<Real,Real> >::const_iterator i;
+			concurrent_vector<std::pair<Real, Real> >::const_iterator i;
             for (i=samples_.begin(); i!=samples_.end(); ++i) {
                 Real x = i->first, w = i->second;
                 if (inRange(x)) {
@@ -178,7 +182,8 @@ namespace QuantLib {
         void sort() const;
         //@}
       private:
-        mutable std::vector<std::pair<Real,Real> > samples_;
+        //mutable std::vector<std::pair<Real,Real> > samples_;
+		mutable concurrent_vector<std::pair<Real, Real> > samples_;
         mutable bool sorted_;
     };
 
@@ -193,7 +198,8 @@ namespace QuantLib {
         return samples_.size();
     }
 
-    inline const std::vector<std::pair<Real,Real> >&
+    //inline const std::vector<std::pair<Real,Real> >&
+	inline const concurrent_vector<std::pair<Real,Real> >&
     GeneralStatistics::data() const {
         return samples_;
     }
@@ -226,7 +232,8 @@ namespace QuantLib {
     }
 
     inline void GeneralStatistics::reset() {
-        samples_ = std::vector<std::pair<Real,Real> >();
+        //samples_ = std::vector<std::pair<Real,Real> >();
+		//samples_ = concurrency_vector<std::pair<Real,Real> >();
         sorted_ = true;
     }
 
